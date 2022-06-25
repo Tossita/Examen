@@ -1,0 +1,66 @@
+{% extends 'app/base_sinlogin.html' %}
+{% load static %}
+{% block title %} Menu {% endblock title %}
+{% block contenido %}
+
+<div id="wrap">
+    <div class="container" style="margin-top: 30px; margin-bottom: 30px;">
+        <button type="" onclick="logintwo()" class="btn btn-success">Iniciar sesión</button>
+
+        <!--<div class="col sm-6" style="padding: 10px;">
+            <h4 style="display: flex; justify-content: center; align-items: center;"> Iniciar sesión </h4>
+            <div class="row">
+
+                <div >
+                    <form action="" method="POST" style="display: flex; flex-direction: column; align-items: center;" >
+                        {% csrf_token %}
+                        {{ form }}
+                        <button type="submit" class="btn btn-success">Iniciar sesión</button>
+                        <hr>
+                        <p><a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a></p>
+                    </form>
+                </div>
+                
+
+            </div>
+        </div>-->
+
+    </div>
+
+</div>
+<div>
+    <script>
+        function logintwo() {
+            Swal.fire({
+                title: 'Iniciar sesión',
+                html: `<div >
+                            <form action="" method="POST" style="display: flex; flex-direction: column;" >
+                                {% csrf_token %}
+                                {{ form }}
+                                <div style="display:flex; flex-direction:row; align-items: center; justify-content:center; margin-top: 3%">
+                                    <div style="margin-right: 3%">
+                                        <button type="submit" class="btn btn-success" style="margin-top: 2%;">Iniciar sesión</button>
+                                    </div>
+                                    <div style="margin-top: 1px;">
+                                        <button type="reset" class="btn btn-danger" style="margin-top: 2%;">Cancelar</button>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                        </div>`,
+                showCancelButton: false, 
+                showConfirmButton: false,
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Cerrar',
+                footer: `<div style="display:flex; flex-direction:column;">
+                            <p><a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a></p>
+                            <a href="`+window.location.origin+'/registro_usuarios'+`">¿Todavía no tienes cuenta?</a>
+                        </div>`,
+                
+                focusConfirm: false, 
+            })
+        }
+    </script>
+</div>
+
+{% endblock %}

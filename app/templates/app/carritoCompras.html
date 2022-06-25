@@ -1,0 +1,70 @@
+
+
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %} Carrito {% endblock title %}
+{% block contenido %}
+
+<h2 style="text-align: center;">Carrito</h2>
+                    <hr>
+                    <div style="background-color: rgba(39, 36, 36, 0.241);">
+                        {% for aux in listaCarrito %}
+                        {% if aux.producto.stock != 0 %}
+                            <div class="card mb-3" style="max-width: 100%;">
+                                <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <img src="{{ aux.producto.imagen.url }}" class="card-img" alt="...">
+                                </div>
+                                <div class="col-md-8" style="margin-top: 8%;">
+                                    <div class="card-body">
+                                    <h3 class="card-title" style="text-align: center;">{{ aux.producto.nombre }}</h3>
+                                    <h4 class="card-text" style="text-align: center;"> ${{ aux.producto.precio }}</h4>
+                                    <h4 class="card-text" style="text-align: center;"> {{ aux.cantidad }}</h4>
+                                    <form action="" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="prod" id="prod" value="{{ aux.producto.codigo }}">
+                                        <input type="hidden" name="sacarProducto" id="sacarProducto" value="False">
+                                        <button class="btn btn-danger" >Eliminar</button>
+                                    </form>
+                                    
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% endfor %}
+
+                        
+                    </div>
+                    <div class="container mb-3 mt-3" >
+                        {% if descuento != 0  %}
+                        <div class="row" style="justify-content:space-between">
+                            <h2>Subtotal:</h2>
+                            <h2>${{ subtotal }}</h2>
+                           
+                        </div>
+                        <div class="row" style="justify-content:space-between">
+                            <h2>Descuento:</h2>
+                            <h2>${{ descuento }}</h2>
+                        </div>
+                        <div class="row" style="justify-content:space-between">
+                            <h2>Total:</h2>
+                            <h2>${{ total }}</h2>
+                        </div>
+                        {% endif %}
+                        {% if descuento == 0  %}
+                        <div class="row" style="justify-content:space-between">
+                            <h2>Total:</h2>
+                            <h2>${{ subtotal }}</h2>
+                        </div>
+                        {% endif %}
+
+                        
+                        <div style="text-align: center;">
+                            <a type="button" class="btn btn-success" name="btnPagar" id="btnPagar" href="{% url 'compra_exitosa'%}" >Pagar</a>
+                        </div>
+                        
+                    
+                        
+                    </div>
+{% endblock %}

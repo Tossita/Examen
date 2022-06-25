@@ -1,0 +1,53 @@
+
+
+{%extends 'app/base.html' %}
+{% load static %}
+{% block title %} Historial {% endblock title %}
+{% block contenido %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>N° de pedido</th>
+      <th>Estado de pedido</th>
+      <th>Dirección de entrega</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-warning">
+      <td>000001</td>
+      <td>En procesamiento</td>
+      <td>Los Lirios, 123</td>
+    </tr>
+    <tr class="table-primary">
+      <td>000002</td>
+      <td>En transito</td>
+      <td>Los Lirios, 123</td>
+    </tr>
+    <tr class="table-primary">
+      <td>000003</td>
+      <td>En transito</td>
+      <td>Los Lirios, 123</td>
+    </tr>
+    <tr class="table-success">
+      <td>000004</td>
+      <td>Entregado</td>
+      <td>Los Lirios, 123</td>
+    </tr>
+    <tr class="table-success">
+      <td>000005</td>
+      <td>Entregado</td>
+      <td>Los Lirios, 123</td>
+    </tr>
+    <tr class="table-success">
+      <td>000006</td>
+      <td>Entregado</td>
+      <td>Los Lirios, 123</td>
+    </tr>
+    <tr class="table-success">
+      <td>000007</td>
+      <td>Entregado</td>
+      <td>Los Lirios, 123</td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}

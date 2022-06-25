@@ -1,0 +1,40 @@
+{%extends 'app/base.html' %}
+{% load static %}
+{% block title %} Perfil {% endblock title %}
+{%block contenido%}
+
+
+<div class="container mt-3 mb-2" style="text-align: center;">
+    <div class="perfil-prin" style="align-content: center;" >
+        <div class=" mt-4" style="display: flex; justify-content: center;">
+            <img class="avatar" src="{% static 'app/img/cactus.jpeg' %}" alt="" width="100">
+        </div>
+        <div class="texto-bienvenida mt-3" style="text-align: center;">
+            <h5>Hola usuario!</h5>
+        </div>
+
+    </div>
+</div>
+    
+
+<hr>
+<div class="container-navs mb-3">
+    <ul class="nav nav-pills flex-total" style="display: flex; justify-content: space-around;">
+        <div class="list-object nav-pills-item" style="text-align: center;">
+            <i class="fa-solid fa-clipboard-list fa-2x anim-li"></i>
+            <li><a class="a-color a-color-perfil" href="{% url 'historial'%}">Historial </a></li>
+        </div>
+        <div class="list-object nav-pills-item mr-1" style="text-align: center;">
+            <i class="fa-solid fa-cart-shopping fa-2x anim-li"></i>
+            <li><a class="a-color a-color-perfil" href="{% url 'carritoCompras'%}">Carrito de compras </a></li>
+        </div>
+        <div class="list-object nav-pills-item " style="text-align: center;">
+            <i class="fa-solid fa-id-card-clip fa-2x anim-li"></i>
+            <li><a class="a-color a-color-perfil" href="{% url 'historial'%}">Cuenta  </a></li>
+        </div>
+            
+    </ul>
+</div>
+
+
+{% endblock %}

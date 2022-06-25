@@ -1,0 +1,247 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %} Ventas {% endblock title %}
+{% block contenido %}
+
+
+<h1 style="margin-bottom: 2%; margin-top: 2%; text-align: center;">Productos</h1>
+
+<hr>
+
+<h3 style="text-align: center;margin-top: 3%; font-family: 'Chewy';">Herramientas</h3>
+<div class="card-deck  tamanio-letra-prod " style="margin-top: 4%; width: fit-content;" >
+  {% for aux in listaJson %} 
+  {% if aux.tipo.tipo == 'Herramientas' %}
+      <div class="card" style="max-width: 433.48px; max-height: 678.8px">
+          
+            <img src="{{ aux.imagen }}" class="card-img-top" style="max-width: 431px; max-height: 431px">
+          
+      
+            <div class="card-body" >
+              <h4 class="card-title tamanio-letra-prod" style="text-align: center;">{{ aux.nombre }}</h4>
+              <p class="card-text font-weight-bold" style="text-align: center; font-size: xx-large;">${{ aux.precio }}</p>
+              <p class="card-text font-weight-bold" style="text-align: center;">{{ aux.descripcion }}</p>
+              <p class="card-text font-weight-bold" style="text-align: center;">Stock: {{ aux.stock }}</p>
+              <form action="" method="POST" name="form">
+                {% csrf_token %}
+                <input type="hidden" name="codigo" id="codigo" value="{{ aux.codigo }}">
+                <input type="hidden" name="nombre" id="nombre" value="{{ aux.nombre }}">
+                <input type="hidden" name="descripcion" id="descripcion" value="{{ aux.descripcion }}">
+                <input type="hidden" name="marca" id="marca" value="{{ aux.marca }}">
+                <input type="hidden" name="tipo" id="tipo" value="{{ aux.tipo }}">
+                <input type="hidden" name="stock" id="stock" value="{{ aux.stock }}">
+                <input type="hidden" name="precio" id="precio" value="{{ aux.precio }}">
+                <input type="hidden" name="imagen" id="imagen" value="{{ aux.imagen }}">
+                <div style="display: flex; justify-content:center;  margin-bottom: 2%;">
+                  <button class="btn btn-primary" type="button" onclick="saAnnadir(form)" style="display: flex; justify-content:center; color: white !important;">Agregar <i class="fa-solid fa-cart-plus" style="align-self: center; margin-left: 2px;"></i></button>
+                </div>
+                
+              </form>
+              
+            </div>
+      </div>
+  {% endif %}
+  {% endfor %}
+</div>
+
+<hr>
+
+<h3 style="text-align: center;margin-top: 3%; font-family: 'Chewy';">Flores</h3>
+<div class="card-deck  tamanio-letra-prod " style="margin-top: 4%; width: fit-content;" >
+  {% for aux in listaProductos %} 
+  {% if aux.tipo.tipo == 'Flores' %}
+      <div class="card" style="max-width: 433.48px; max-height: 678.8px">
+          {% if aux.imagen %}
+            <img src="{{ aux.imagen.url }}" class="card-img-top" style="max-width: 431px; max-height: 431px">
+          {% else %}
+            <img src="{% static 'app/img/defecto.png' %}" class="card-img-top" style="max-width: 431px; max-height: 431px">
+          {% endif %}
+      
+            <div class="card-body" >
+              <h4 class="card-title tamanio-letra-prod" style="text-align: center;">{{ aux.nombre }}</h4>
+              <p class="card-text font-weight-bold" style="text-align: center; font-size: xx-large;">${{ aux.precio }}</p>
+              <p class="card-text font-weight-bold" style="text-align: center; ">{{ aux.descripcion }}</p>
+              <p class="card-text font-weight-bold" style="text-align: center;">Stock: {{ aux.stock }}</p>
+              <form action="" method="POST" name="form">
+                {% csrf_token %}
+                <input type="hidden" name="codigo" id="codigo" value="{{ aux.codigo }}">
+                <input type="hidden" name="nombre" id="nombre" value="{{ aux.nombre }}">
+                <input type="hidden" name="descripcion" id="descripcion" value="{{ aux.descripcion }}">
+                <input type="hidden" name="marca" id="marca" value="{{ aux.marca }}">
+                <input type="hidden" name="tipo" id="tipo" value="{{ aux.tipo }}">
+                <input type="hidden" name="stock" id="stock" value="{{ aux.stock }}">
+                <input type="hidden" name="precio" id="precio" value="{{ aux.precio }}">
+                <input type="hidden" name="imagen" id="imagen" value="{{ aux.imagen }}">
+                <div style="display: flex; justify-content:center;  margin-bottom: 2%;">
+                  <button class="btn btn-primary" type="button" id="#btn-submit" name="#btn-submit" onclick="saAnnadir(form)" style="display: flex; justify-content:center; color: white !important;">Agregar <i class="fa-solid fa-cart-plus" style="align-self: center; margin-left: 2px;"></i></button>
+                </div>
+              </form>
+              
+            </div>
+      </div>
+  {% endif %}
+  {% endfor %}
+</div>
+
+<hr>
+
+<h3 style="text-align: center;margin-top: 3%; font-family: 'Chewy'">Plantas</h3>
+<div class="card-deck  tamanio-letra-prod " style="margin-top: 4%; width: fit-content;" >
+  {% for aux in listaProductos %} 
+  {% if aux.tipo.tipo == 'Plantas' %}
+      <div class="card" style="max-width: 433.48px; max-height: 678.8px">
+          {% if aux.imagen %}
+            <img src="{{ aux.imagen.url }}" class="card-img-top" style="max-width: 431px; max-height: 431px">
+          {% else %}
+            <img src="{% static 'app/img/defecto.png' %}" class="card-img-top" style="max-width: 431px; max-height: 431px">
+          {% endif %}
+      
+            <div class="card-body" >
+              <h4 class="card-title tamanio-letra-prod" style="text-align: center;">{{ aux.nombre }}</h4>
+              <p class="card-text font-weight-bold" style="text-align: center; font-size: xx-large;">${{ aux.precio }}</p>
+              <p class="card-text font-weight-bold" style="text-align: center;">{{ aux.descripcion }}</p>
+              <p class="card-text font-weight-bold" style="text-align: center;">Stock: {{ aux.stock }}</p>
+              <form action="" method="POST" name="form">
+                {% csrf_token %}
+                <input type="hidden" name="codigo" id="codigo" value="{{ aux.codigo }}">
+                <input type="hidden" name="nombre" id="nombre" value="{{ aux.nombre }}">
+                <input type="hidden" name="descripcion" id="descripcion" value="{{ aux.descripcion }}">
+                <input type="hidden" name="marca" id="marca" value="{{ aux.marca }}">
+                <input type="hidden" name="tipo" id="tipo" value="{{ aux.tipo }}">
+                <input type="hidden" name="stock" id="stock" value="{{ aux.stock }}">
+                <input type="hidden" name="precio" id="precio" value="{{ aux.precio }}">
+                <input type="hidden" name="imagen" id="imagen" value="{{ aux.imagen }}">
+                <div style="display: flex; justify-content:center;  margin-bottom: 2%;">
+                  <button class="btn btn-primary" type="button" id="#btn-submit" name="#btn-submit" onclick="saAnnadir(form)" style="display: flex; justify-content:center; color: white !important;">Agregar <i class="fa-solid fa-cart-plus" style="align-self: center; margin-left: 2px;"></i></button>
+                </div>
+              </form>
+              
+            </div>
+      </div>
+  {% endif %}
+  {% endfor %}
+</div>
+
+<hr>
+
+<h3 style="text-align: center;margin-top: 3%; font-family: 'Chewy'">Tierra</h3>
+<div class="card-deck  tamanio-letra-prod " style="margin-top: 4%; width: fit-content;" >
+  {% for aux in listaProductos %} 
+  {% if aux.tipo.tipo == 'Tierra' %}
+      <div class="card" style="max-width: 433.48px; max-height: 678.8px">
+          {% if aux.imagen %}
+            <img src="{{ aux.imagen.url }}" class="card-img-top" style="max-width: 431px; max-height: 431px">
+          {% else %}
+            <img src="{% static 'app/img/defecto.png' %}" class="card-img-top" style="max-width: 431px; max-height: 431px">
+          {% endif %}
+      
+            <div class="card-body" >
+              <h4 class="card-title tamanio-letra-prod" style="text-align: center;">{{ aux.nombre }}</h4>
+              <p class="card-text font-weight-bold" style="text-align: center; font-size: xx-large;">${{ aux.precio }}</p>
+              <p class="card-text font-weight-bold" style="text-align: center;">{{ aux.descripcion }}</p>
+              <p class="card-text font-weight-bold" style="text-align: center;">Stock: {{ aux.stock }}</p>
+              <form action="" method="POST" name="form">
+                {% csrf_token %}
+                <input type="hidden" name="codigo" id="codigo" value="{{ aux.codigo }}">
+                <input type="hidden" name="nombre" id="nombre" value="{{ aux.nombre }}">
+                <input type="hidden" name="descripcion" id="descripcion" value="{{ aux.descripcion }}">
+                <input type="hidden" name="marca" id="marca" value="{{ aux.marca }}">
+                <input type="hidden" name="tipo" id="tipo" value="{{ aux.tipo }}">
+                <input type="hidden" name="stock" id="stock" value="{{ aux.stock }}">
+                <input type="hidden" name="precio" id="precio" value="{{ aux.precio }}">
+                <input type="hidden" name="imagen" id="imagen" value="{{ aux.imagen }}">
+                <div style="display: flex; justify-content:center;  margin-bottom: 2%;">
+                  <button class="btn btn-primary" type="button" onclick="saAnnadir(form)" style="display: flex; justify-content:center; color: white !important;">Agregar <i class="fa-solid fa-cart-plus" style="align-self: center; margin-left: 2px;"></i></button>
+                </div>
+              </form>
+              
+            </div>
+      </div>
+  {% endif %}
+  {% endfor %}
+</div>
+
+<hr>
+
+<h3 style="text-align: center;margin-top: 3%; font-family: 'Chewy'">Abono</h3>
+<div class="card-deck  tamanio-letra-prod " style="margin-top: 4%; width: fit-content;" >
+  {% for aux in listaProductos %} 
+  {% if aux.tipo.tipo == 'Abono' %}
+      <div class="card" style="max-width: 433.48px; max-height: 678.8px">
+          {% if aux.imagen %}
+            <img src="{{ aux.imagen.url }}" class="card-img-top" style="max-width: 431px; max-height: 431px">
+          {% else %}
+            <img src="{% static 'app/img/defecto.png' %}" class="card-img-top" style="max-width: 431px; max-height: 431px">
+          {% endif %}
+      
+            <div class="card-body" >
+              <h4 class="card-title tamanio-letra-prod" style="text-align: center;">{{ aux.nombre }}</h4>
+              <p class="card-text font-weight-bold" style="text-align: center; font-size: xx-large;">${{ aux.precio }}</p>
+              <p class="card-text font-weight-bold" style="text-align: center;">{{ aux.descripcion }}</p>
+              <p class="card-text font-weight-bold" style="text-align: center;">Stock: {{ aux.stock }}</p>
+              <form action="" method="POST" name="form">
+                {% csrf_token %}
+                <input type="hidden" name="codigo" id="codigo" value="{{ aux.codigo }}">
+                <input type="hidden" name="nombre" id="nombre" value="{{ aux.nombre }}">
+                <input type="hidden" name="descripcion" id="descripcion" value="{{ aux.descripcion }}">
+                <input type="hidden" name="marca" id="marca" value="{{ aux.marca }}">
+                <input type="hidden" name="tipo" id="tipo" value="{{ aux.tipo }}">
+                <input type="hidden" name="stock" id="stock" value="{{ aux.stock }}">
+                <input type="hidden" name="precio" id="precio" value="{{ aux.precio }}">
+                <input type="hidden" name="imagen" id="imagen" value="{{ aux.imagen }}">
+                <div style="display: flex; justify-content:center; margin-bottom: 2%;">
+                  <button class="btn btn-primary" type="button" onclick="saAnnadir(form)" style="display: flex; justify-content:center; color: white !important;">Agregar <i class="fa-solid fa-cart-plus" style="align-self: center; margin-left: 2px;"></i></button>
+                </div>
+              </form>
+              
+            </div>
+      </div>
+  {% endif %}
+  {% endfor %}
+</div>
+
+<hr>
+
+<h3 style="text-align: center;margin-top: 3%; font-family: 'Chewy'">Maceteros</h3>
+<div class="card-deck  tamanio-letra-prod " style="margin-top: 4%; width: fit-content;" >
+  {% for aux in listaProductos %} 
+  {% if aux.tipo.tipo == 'Maceteros' %}
+      <div class="card" style="max-width: 433.48px; max-height: 678.8px">
+          {% if aux.imagen %}
+            <img src="{{ aux.imagen.url }}" class="card-img-top" style="max-width: 431px; max-height: 431px">
+          {% else %}
+            <img src="{% static 'app/img/defecto.png' %}" class="card-img-top" style="max-width: 431px; max-height: 431px">
+          {% endif %}
+      
+            <div class="card-body" >
+              <h4 class="card-title tamanio-letra-prod" style="text-align: center;">{{ aux.nombre }}</h4>
+              <p class="card-text font-weight-bold" style="text-align: center; font-size: xx-large;">${{ aux.precio }}</p>
+              <p class="card-text font-weight-bold" style="text-align: center;">{{ aux.descripcion }}</p>
+              <p class="card-text font-weight-bold" style="text-align: center;">Stock: {{ aux.stock }}</p>
+              <form action="" method="POST" name="form">
+                {% csrf_token %}
+                <input type="hidden" name="codigo" id="codigo" value="{{ aux.codigo }}">
+                <input type="hidden" name="nombre" id="nombre" value="{{ aux.nombre }}">
+                <input type="hidden" name="descripcion" id="descripcion" value="{{ aux.descripcion }}">
+                <input type="hidden" name="marca" id="marca" value="{{ aux.marca }}">
+                <input type="hidden" name="tipo" id="tipo" value="{{ aux.tipo }}">
+                <input type="hidden" name="stock" id="stock" value="{{ aux.stock }}">
+                <input type="hidden" name="precio" id="precio" value="{{ aux.precio }}">
+                <input type="hidden" name="imagen" id="imagen" value="{{ aux.imagen }}">
+                <div style="display: flex; justify-content:center; margin-bottom: 2%;">
+                  <button class="btn btn-primary" type="button" onclick="saAnnadir(form)" style="display: flex; justify-content:center; color: white !important;">Agregar <i class="fa-solid fa-cart-plus" style="align-self: center; margin-left: 2px;"></i></button>
+                </div>
+              
+              </form>
+              
+            </div>
+      </div>
+  {% endif %}
+  {% endfor %}
+</div>
+
+
+<hr>
+
+
+{% endblock %}

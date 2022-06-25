@@ -1,0 +1,54 @@
+{% extends 'app/base2.html' %}
+{% load static %}
+{% block title %} Listar Usuarios {% endblock title %}
+{% block contenido %}
+
+<section>
+
+    <div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div>
+                    <table class="table table-bordered" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>NÚMERO DE SEGUIMIENTO</th>
+                                <th>USUARIO </th>
+                                <th>NÚMERO DE CARRITO</th>
+                                <th>ESTADO</th>
+                                <th>FECHA CREACIÓN</th>
+                                <th>FECHA MODIFICACIÓN</th>
+                                <th>OPCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for aux in listarSeguimientos %}
+                            <tr>
+                                <td>{{ aux.cod_seguimiento }}</td>
+                                <input type="hidden" name="cod_seguimiento" id="cod_seguimiento" value="{{ aux.cod_seguimiento }}">
+                                <td>{{ aux.user.username }}</td>
+                                <td>{{ aux.num_carrito }}</td>
+                                <td>{{ aux.estado }}</td>
+                                <td>{{ aux.created_at }}</td>
+                                <td>{{ aux.updated_at }}</td>
+                                
+                                <td>    
+                                    <div class="" style="text-align: center;">
+                                        <a href="{% url 'modificar_seguimiento' aux.cod_seguimiento %}" class="btn btn-warning suavizado" style="width: 40px !important; margin-bottom: 5px; border-radius: 50% !important;"><i class="fa-solid fa-file-pen"></i></a>
+                                        <a style="border-radius: 50% !important;" class="btn btn-danger suavizado" onclick="confirmacionSeg('{{ aux.cod_seguimiento }}')"><i class="fa-solid fa-trash-can"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    </section>
+
+
+
+{% endblock %}

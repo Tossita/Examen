@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %} Usuario {% endblock title %}
+{% block contenido %}
+
+
+
+<div class="card-deck  tamanio-letra-prod " style="margin-top: 4%;" >
+  {% for aux in listaProductos %} 
+  <div class="card" style="width:100%;">
+      {% if aux.imagen %}
+        <img src="{{ aux.imagen.url }}" class="img-fluid item-img w-100 mb-3">
+      {% else %}
+        <img src="{% static 'app/img/defecto.png' %}" class="img-fluid item-img w-100 mb-3">
+      {% endif %}
+   
+        <div class="card-body" >
+          <h4 class="card-title tamanio-letra-prod" style="text-align: center;">{{ aux.nombre }}</h4>
+          <p class="card-text font-weight-bold" style="text-align: center;">${{ aux.precio }}</p>
+          <p class="card-text font-weight-bold" style="text-align: center;">{{ aux.descripcion }}</p>
+          <p class="card-text font-weight-bold" style="text-align: center;">Stock: {{ aux.stock }}</p>
+          <a onclick="saAnnadir()" class="btn btn-primary " style="display: flex; justify-content:center; color: white !important;">Añadir<i class="fa-solid fa-cart-plus" style="align-self: center; margin-left: 2px;"></i></a>
+        </div>
+  </div>
+  {% endfor %}
+</div>
+
+
+
+
+
+{% endblock %}

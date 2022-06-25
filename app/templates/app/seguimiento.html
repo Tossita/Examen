@@ -1,0 +1,54 @@
+
+
+{%extends 'app/base.html' %}
+{% load static %}
+{% block title %} Seguimiento {% endblock title %}
+{%block contenido%}
+<!-- The Modal -->
+<div class="modal" id="modalTres">
+    <div class="modal-dialog">
+    <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title">Estado de la compra</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+        <h6>Su compra se encuentra: En transito</h6> 
+        <h6>Fecha de compra: 1/06/2022 </h6>
+        <h6>Hora de compra: 12:33 pm</h6>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <a type="submit" class="btn btn-success" name="btnHistorial" id="btnHistorial" href="{%url 'historial'%}" style="font-family: inherit !important;">Ver Historial de Compras</a>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        </div>
+
+    </div>
+    </div>
+</div>
+<div>
+    <div style="display: flex; align-items: center !important; justify-content: center !important;">
+        <img src="{% static 'app/img/camion_entrega.png'%}" alt="" width="80">
+    </div>
+    
+    <form action="suscriptor.html" method="GET">
+        <div class="form-group">
+            <div style="display: flex; align-items: center !important; justify-content: center !important;">
+                <label for="txtUser" style="text-align: center !important;"> Numero de Pedido:</label>
+            </div>
+            
+            <input type="text" placeholder="Ej: 000001" class="form-control" id="txtUser" name="txtUser">
+        </div>
+        <div class="container mb-5" style="text-align:center">
+            <input type="button" value="Buscar" id="btnEnviar" name="btnEnviar" class="btn btn-success" data-toggle="modal" data-target="#modalTres">
+            <input type="reset" id="btnLimpiar" name="btnLimpiar" class="btn btn-danger">
+        </div>
+    </form>
+</div>
+
+{% endblock%}

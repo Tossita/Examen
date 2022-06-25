@@ -1,0 +1,34 @@
+{% extends 'app/base_sinlogin.html' %}
+{% load static %}
+{% block title %} Registro {% endblock title %}
+{% load crispy_forms_tags %}
+{% block contenido %}
+
+<section class="py-4 osahan-main-body">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-lg-8">
+                <form action="" method="POST" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+                    <table>
+                        {{ form|crispy }}
+                    </table>    
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <input type="submit" class="btn btn-success" value="Guardar" >
+                    </div> 
+                    
+                </form>
+                <div style="display: flex; text-align:center; font-family: 'Shadows Into Light'; justify-content: center; margin-top: 3%;">
+                    {{ mensaje }}
+                </div>
+                
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+    </div>
+
+</section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %} Compra Exitosa {% endblock title %}
+{% load crispy_forms_tags %}
+{% block contenido %}
+
+<div style="display: flex; justify-content:center; align-items:center; flex-direction: column;">
+    <img src="{% static 'app/img/marca-de-verificacion.png' %}" alt="" width="40%">
+
+    
+    <h1>Pago Exitoso!</h1>
+    <h3 class="text-center">Consulte la informacion sobre su envio en seguimiento</h3>
+    <a href="{% url 'index'%}"  class="btn btn-warning a-hov mt-3">Volver al inicio</a>
+
+</div>
+
+
+{% endblock %}

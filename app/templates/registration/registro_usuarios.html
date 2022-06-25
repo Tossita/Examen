@@ -1,0 +1,44 @@
+{% extends 'app/base_sinlogin.html' %}
+{% load static %}
+{% block title %} Menu {% endblock title %}
+{% block contenido %}
+
+<div id="wrap">
+    <div class="container" style="margin-top: 30px; margin-bottom: 30px;">
+
+        <div class="col sm-6" style="padding: 10px;">
+            <h4 style="display: flex; justify-content: center; align-items: center;"> Iniciar sesión </h4>
+            <div class="col">
+
+                
+                <form action="" method="POST" style="display: flex; flex-direction:column; gap: 5%;">
+                    {% csrf_token %}
+                    {{ form }}
+                    <hr>
+                    <button type="submit" class="btn btn-success" >Crear cuenta</button>
+                </form>
+                <div style="display: flex; text-align:center; font-family: 'Shadows Into Light'; justify-content: center; margin-top: 3%;">
+                    <div > {% if messages %}
+                                        {% for msj in messages %}
+                                                <script>
+                                                    Swal.fire({
+                                                        title: 'Guardado!',
+                                                        text: '{{ msj }}',
+                                                        icon: 'success',
+                                                        showConfirmButton: false,
+                                                        timer: 2000
+                                                    });
+                                                </script>
+                                            {% endfor %}
+                                        {% endif %}</div>
+                    
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

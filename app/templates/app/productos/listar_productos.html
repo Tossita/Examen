@@ -1,0 +1,67 @@
+
+<!--se agrega en el form enctype="multipart/form-data"-->
+{%extends 'app/base2.html' %}
+
+{% load static %}
+{% block title %} Listar Productos {% endblock title %}
+{%block contenido%}
+<section>
+
+<div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div>
+                <table class="table table-bordered" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>CODIGO</th>
+                            <th>NOMBRE</th>
+                            <th>MARCA</th>
+                            <th>PRECIO</th>
+                            <th>DESCRIPCION</th>
+                            <th>STOCK</th>
+                            <th>TIPO</th>
+                            <th>IMAGEN</th>
+                            <th>FECHA CREACION</th>
+                            <th>FECHA MODIFICACION</th>
+                            <th>OPCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for aux in listarProductos %}
+                        <tr>
+                            <td>{{ aux.codigo }}</td>
+                            <input type="hidden" name="codigo" id="codigo" value="{{ aux.codigo }}">
+                            <td>{{ aux.nombre }}</td>
+                            <td>{{ aux.marca }}</td>
+                            <td>{{ aux.precio }}</td>
+                            <td>{{ aux.descripcion }}</td>
+                            <td>{{ aux.stock }}</td>
+                            <td>{{ aux.tipo }}</td>
+                            <td><img src="{{ aux.imagen.url }}" alt="" style="width: 80px;"></td>
+                            <td>{{ aux.created_at }}</td>
+                            <td>{{ aux.updated_at }}</td>
+                            
+                            <td>    
+                                <div class="" style="text-align: center;">
+                                    <a href="{% url 'modificar_producto' aux.codigo %}" class="btn btn-warning suavizado" style="width: 40px !important; margin-bottom: 5px; border-radius: 50% !important;"><i class="fa-solid fa-file-pen"></i></a>
+                                    {% if perms.app.add_producto %}
+                                    <a style="border-radius: 50% !important;" class="btn btn-danger suavizado" onclick="confirmacionProd('{{ aux.codigo }}')"><i class="fa-solid fa-trash-can"></i></a>
+		                            {% endif %}
+                                    
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+</section>
+{% endblock%}
